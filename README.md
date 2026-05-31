@@ -2,287 +2,280 @@
 
 ## Project Overview
 
-This project focuses on analyzing vendor performance using supply chain analytics techniques to evaluate supplier efficiency, reliability, and business impact.
+This project focuses on evaluating supplier performance using procurement, sales, profitability, and operational data to identify high-performing vendors, assess supply chain risk, and support data-driven sourcing decisions.
 
-The analysis uses Exploratory Data Analysis (EDA) to identify:
-- High-performing vendors
-- Operational bottlenecks
-- Profitability differences
-- Delivery and sales performance
-- Vendor contribution to supply chain efficiency
+Vendor performance directly impacts inventory availability, procurement costs, customer service levels, and overall supply chain efficiency. The objective of this project was to develop a structured analytical framework capable of measuring supplier effectiveness and identifying opportunities for procurement optimization.
+
+The project combines data ingestion, exploratory data analysis, KPI evaluation, profitability analysis, and supplier performance assessment to generate actionable supply chain insights.
 
 ---
 
-# Business Problem
+## Project Files
 
-Organizations rely heavily on vendors and suppliers to maintain stable operations and customer fulfillment.
-
-Poor vendor performance can result in:
-- Delayed deliveries
-- Inventory shortages
-- Increased operational costs
-- Revenue loss
-- Poor customer satisfaction
-- Supply chain disruptions
-
-The business requires a data-driven approach to:
-- Measure supplier performance
-- Identify inefficient vendors
-- Optimize procurement decisions
-- Improve supply chain reliability
+| File                              | Objective                                                          |
+| --------------------------------- | ------------------------------------------------------------------ |
+| EDA.ipynb                         | Exploratory analysis of vendor, sales, and operational performance |
+| Vendor Performance Analysis.ipynb | Supplier KPI evaluation and business insights                      |
+| ingestion_db.py                   | Automated CSV ingestion pipeline into SQLite database              |
 
 ---
 
-# Project Objectives
+## View Notebooks
 
-- Perform Exploratory Data Analysis (EDA) on vendor-related data
-- Evaluate vendor operational performance
-- Analyze profitability and sales contribution
-- Identify high-risk and low-performing vendors
-- Generate supply chain-focused recommendations
-- Support strategic supplier management decisions
+### Exploratory Data Analysis
 
----
+📓 [View Notebook](https://nbviewer.org/github/chandran1994/Python-Vendor-Performance-Analysis-Project/blob/main/EDA.ipynb)
 
-# Supply Chain Perspective
+### Vendor Performance Analysis
 
-This project directly supports:
-- Supplier Evaluation
-- Procurement Analytics
-- Vendor Performance Monitoring
-- Supply Risk Management
-- Supplier Relationship Management (SRM)
-- Supply Chain Efficiency Optimization
-
-The analysis helps improve procurement visibility and strategic supplier decision-making.
+📓 [View Notebook](https://nbviewer.org/github/chandran1994/Python-Vendor-Performance-Analysis-Project/blob/main/Vendor%20Performance%20Analysis.ipynb)
 
 ---
 
-# Tools & Technologies Used
+## Data Engineering Component
 
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Jupyter Notebook
+The project includes an automated ingestion pipeline that loads raw CSV files into a SQLite database for analytical processing.
 
----
+The ingestion process:
 
-# Dataset Features
+```text
+CSV Files
+    ↓
+Data Validation
+    ↓
+SQLite Database
+    ↓
+Analytical Processing
+```
 
-The dataset includes:
-- Vendor information
-- Sales performance
-- Profit metrics
-- Order details
-- Product categories
-- Regional information
-- Shipping performance
-- Operational KPIs
+The ingestion script automatically scans source files and loads them into database tables for downstream analysis.
 
----
+### Ingestion Workflow
 
-# Data Cleaning & Preparation
+```python
+for file in os.listdir('data'):
+    df = pd.read_csv('data/'+file)
+    ingest_db(df, file[:-4], engine)
+```
 
-Performed the following preprocessing steps:
-- Handling missing values
-- Removing duplicates
-- Data aggregation
-- Vendor-level KPI calculations
-- Formatting and feature engineering
-- Profitability analysis
+This creates a reproducible analytical workflow and reduces manual data loading effort.
 
 ---
 
-# Exploratory Data Analysis (EDA)
+# Analytical Workflow
 
-## 1. Vendor Sales Performance Analysis
+```text
+Vendor Transaction Data
+            ↓
+Data Cleaning
+            ↓
+Data Ingestion
+            ↓
+Exploratory Data Analysis
+            ↓
+Vendor KPI Analysis
+            ↓
+Profitability Evaluation
+            ↓
+Risk Assessment
+            ↓
+Procurement Recommendations
+```
+
+---
+
+## Data Preparation
+
+The project began with data cleaning and preprocessing to ensure reliable supplier performance evaluation.
+
+Key preprocessing activities included:
+
+* Missing value treatment
+* Duplicate removal
+* Vendor-level aggregation
+* KPI calculations
+* Profitability analysis
+* Data validation
+* Feature engineering
+
+The resulting dataset provided a consolidated supplier performance view for analysis.
+
+---
+
+## Vendor Sales Performance Analysis
+
+The first stage focused on evaluating supplier contribution to overall sales performance.
 
 ### Analysis Performed
-- Total sales by vendor
-- Revenue contribution analysis
-- Vendor ranking
 
-### Key Insight
-A small number of vendors contributed disproportionately to total sales volume.
+```python
+Total Sales by Vendor
 
-### Supply Chain Impact
-Helps identify:
-- Strategic suppliers
-- Critical procurement partners
-- Revenue-driving vendors
+Revenue Contribution Analysis
+
+Vendor Ranking
+
+Top Supplier Identification
+```
+
+The analysis quantified each vendor's contribution to business revenue and highlighted suppliers that play a critical role in maintaining sales performance.
 
 ---
 
-## 2. Vendor Profitability Analysis
+## Vendor Profitability Analysis
+
+Sales volume alone does not provide a complete picture of supplier effectiveness.
+
+To address this, profitability metrics were evaluated across vendors.
 
 ### Analysis Performed
-- Profit generated by vendor
-- Margin comparison
-- Profit distribution
 
-### Key Insight
-High sales volume did not always translate into high profitability.
+```python
+Profit by Vendor
 
-### Supply Chain Impact
-Supports:
-- Smarter supplier selection
-- Margin optimization
-- Cost-focused procurement decisions
+Margin Analysis
+
+Profit Distribution
+
+Vendor Profit Ranking
+```
+
+This analysis identified vendors that generated strong margins and revealed situations where high sales volume did not necessarily translate into high profitability.
 
 ---
 
-## 3. Regional Vendor Performance Analysis
+## Product Category Analysis
+
+Supplier performance was further evaluated across product categories to understand vendor specialization and dependency risks.
 
 ### Analysis Performed
-- Vendor performance across regions
-- Regional sales distribution
-- Geographic vendor concentration
 
-### Key Insight
-Certain regions showed stronger vendor efficiency and operational performance.
+```python
+Category-Level Sales
 
-### Supply Chain Impact
-Improves:
-- Regional sourcing decisions
-- Distribution planning
-- Procurement allocation
+Category-Level Profitability
+
+Vendor Category Contribution
+
+Demand Concentration Analysis
+```
+
+The analysis highlighted suppliers dominating key product categories and identified areas where excessive supplier concentration may create supply chain risk.
 
 ---
 
-## 4. Product Category Performance Analysis
+## Regional Performance Analysis
+
+Geographic supplier performance was examined to understand sourcing effectiveness across regions.
 
 ### Analysis Performed
-- Product category contribution by vendor
-- Category-level profitability
-- Demand concentration analysis
 
-### Key Insight
-Some vendors dominated high-demand product categories, increasing supply dependency risk.
+```python
+Regional Sales Analysis
 
-### Supply Chain Impact
-Supports:
-- Supplier diversification
-- Inventory planning
-- Category risk management
+Regional Profitability
+
+Geographic Supplier Comparison
+
+Regional Vendor Ranking
+```
+
+This provided insight into sourcing strengths and regional supplier performance differences.
 
 ---
 
-## 5. Operational Efficiency Analysis
+## Operational Performance Analysis
+
+Operational KPIs were analyzed to evaluate supplier consistency and reliability.
 
 ### Analysis Performed
-- Order fulfillment trends
-- Delivery-related performance indicators
-- Operational KPI comparisons
 
-### Key Insight
-Vendor operational consistency varied significantly across suppliers.
+```python
+Order Fulfillment Analysis
 
-### Supply Chain Impact
-Improves:
-- Supplier evaluation
-- Procurement monitoring
-- Operational reliability management
+Delivery Performance Metrics
+
+Operational KPI Evaluation
+
+Vendor Reliability Assessment
+```
+
+Operational performance indicators help identify suppliers capable of supporting stable inventory availability and service-level requirements.
 
 ---
 
-# Key Supply Chain Insights
+## Vendor Performance Framework
+
+The project evaluated suppliers using multiple performance dimensions rather than relying on a single metric.
+
+```text
+Vendor Performance
+        ├── Sales Contribution
+        ├── Profitability
+        ├── Product Coverage
+        ├── Regional Performance
+        └── Operational Reliability
+```
+
+This framework provides a more balanced approach to supplier evaluation and procurement decision-making.
+
+---
+
+## Key Supply Chain Insights
 
 The analysis identified:
-- Strategic high-performing vendors
-- Vendors with strong profitability
-- Operationally inefficient suppliers
-- Regional sourcing strengths
-- Supplier dependency risks
 
-The project highlights the importance of:
-- Continuous supplier evaluation
-- Data-driven procurement
-- Supply risk visibility
-- Strategic supplier relationships
+* Strategic revenue-generating suppliers
+* High-margin vendors
+* Operationally reliable suppliers
+* Supplier concentration risks
+* Regional sourcing opportunities
+* Vendors requiring performance improvement
+
+These findings support a more proactive supplier management strategy.
 
 ---
 
-# Business Recommendations
+## Business Recommendations
 
-## 1. Strengthen Strategic Supplier Relationships
-Focus collaboration efforts on:
-- High-performing vendors
-- Reliable suppliers
-- High-profit contributors
+### Strategic Supplier Management
 
----
+```text
+High Sales
+      +
+High Profitability
+      +
+Operational Reliability
+      ↓
+Strategic Supplier
+```
 
-## 2. Reduce Supplier Dependency Risk
-Avoid over-reliance on vendors dominating critical product categories.
+Strengthen relationships with suppliers demonstrating consistent performance across multiple KPIs.
 
----
+### Supplier Risk Reduction
 
-## 3. Improve Procurement Decision-Making
-Use vendor profitability and operational KPIs for:
-- Supplier selection
-- Contract negotiation
-- Procurement allocation
+Reduce dependency on vendors controlling large portions of critical product categories.
 
----
+### Procurement Optimization
 
-## 4. Build Vendor Scorecards
-Implement supplier performance dashboards tracking:
-- Profitability
-- Fulfillment performance
-- Sales contribution
-- Reliability metrics
+Use profitability and operational metrics alongside purchase cost when evaluating supplier performance.
 
----
+### Vendor Scorecards
 
-## 5. Optimize Regional Supplier Allocation
-Source strategically from regions demonstrating:
-- Higher efficiency
-- Better performance
-- Stronger operational consistency
+Develop supplier performance scorecards tracking:
 
----
+* Revenue contribution
+* Profitability
+* Fulfillment performance
+* Operational reliability
+* Category importance
 
-# Skills Demonstrated
+### Regional Sourcing Optimization
 
-## Supply Chain Analytics Skills
-- Vendor Performance Analysis
-- Supplier Evaluation
-- Procurement Analytics
-- Supply Risk Analysis
-- Operational KPI Monitoring
-- Supplier Relationship Analysis
-
-## Data Analytics Skills
-- Exploratory Data Analysis (EDA)
-- Data Cleaning
-- Feature Engineering
-- Data Visualization
-- Business Insight Generation
-
-## Technical Skills
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Jupyter Notebook
+Allocate procurement volume toward regions demonstrating stronger supplier performance and operational consistency.
 
 ---
 
-# Project Outcomes
+## Business Value
 
-This project demonstrates how analytics can improve:
-- Supplier visibility
-- Procurement efficiency
-- Vendor selection decisions
-- Supply chain reliability
-- Operational performance
-
-The analysis connects supplier performance directly to business and supply chain outcomes.
----
-
-# Author
-
-## Chandran
+This project demonstrates how analytics can improve supplier visibility and procurement decision-making.
