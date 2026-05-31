@@ -11,8 +11,6 @@ The analysis uses Exploratory Data Analysis (EDA) to identify:
 - Delivery and sales performance
 - Vendor contribution to supply chain efficiency
 
-The project aligns with supplier evaluation and supply management concepts from modern supply chain analytics.
-
 ---
 
 # Business Problem
@@ -94,8 +92,6 @@ Performed the following preprocessing steps:
 - Vendor-level KPI calculations
 - Formatting and feature engineering
 - Profitability analysis
-
-Because supplier data always arrives like multiple departments fought over the spreadsheet.
 
 ---
 
