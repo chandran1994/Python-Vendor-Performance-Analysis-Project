@@ -262,7 +262,7 @@ Use profitability and operational metrics alongside purchase cost when evaluatin
 
 ### Vendor Scorecards
 
-Develop supplier performance scorecards tracking:
+Develop supplier performance scorecards tracking : 
 
 * Revenue contribution
 * Profitability
